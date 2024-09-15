@@ -1,15 +1,15 @@
-## 🌐 [Versão em Português do README](README.md)
+## 🌐 [English Version of README](README_EN.md)
 
 # Java-Rocketseat-Mini-Course
 # ToDoList Application
 
-This project is a to-do list application that allows users to create, edit, and list their personal tasks.
+This project is a To-Do List application that allows users to create, edit, and list their personal tasks.
 
 ## 🔨 Project Features
 
 - User registration and authentication.
 - CRUD (Create, Read, Update, Delete) operations for tasks.
-- JWT (JSON Web Token) based authentication.
+- Token-based JWT authentication.
 - Authentication filter for task operations.
 
 ### Visual Example of the Project
@@ -18,34 +18,34 @@ This project is a to-do list application that allows users to create, edit, and 
 
 ## ✔️ Techniques and Technologies Used
 
-- **Spring Boot**: Framework for Java applications.
-- **Spring Data JPA**: Simplifies data access and manipulation using Java Persistence API.
-- **H2 Database**: In-memory database for development environment.
+- **Spring Boot**: Framework for building Java applications.
+- **Spring Data JPA**: Facilitates data access and manipulation using Java Persistence API.
+- **H2 Database**: In-memory database for the development environment.
 - **BCrypt**: Library for password hashing.
 - **JWT (JSON Web Token)**: For authentication and authorization.
-- **Docker**: For containerization of the application.
+- **Docker**: For containerizing the application.
 - **Maven**: Dependency and build management tool.
-- **JUnit**: Java testing framework.
+- **JUnit**: Testing framework for Java.
 
 ## 📁 Project Structure
 
-- **src/main/java/br/com/lipelacross/todolist/**: Contains the source code of the application.
+- **src/main/java/br/com/lipelacross/todolist/**: Contains the application's source code.
     - **controller/**: REST controllers of the application.
-    - **filter/**: Filters for authentication.
+    - **filter/**: Authentication filters.
     - **models/**: Application entities.
     - **repositories/**: JPA repositories.
     - **services/**: Service layer of the application.
     - **TodolistApplication.java**: Entry point of the Spring Boot application.
 - **src/test/**: Unit tests for the application.
-- **resources/**: Configuration files and properties.
+- **resources/**: Configuration and properties files.
 - **Dockerfile**: File for building the Docker image.
-- **docker-compose.yml**: File for Docker container orchestration.
+- **docker-compose.yml**: File for orchestrating Docker containers.
 - **pom.xml**: Maven configuration file.
 - **mvnw, mvnw.cmd**: Maven wrapper for running the project on Unix and Windows systems.
-- **README_EN.md**: This documentation file in English.
+- **README.md**: This documentation file.
 - **HELP.md**: Help file with additional information.
 
-## 🛠️ How to Open and Run the Project
+## 🛠️ Running the Project
 
 To start the project locally, follow one of the options below:
 
@@ -56,23 +56,23 @@ To start the project locally, follow one of the options below:
       ```bash
       docker -v
       ```
-    - Install Docker Compose if not installed:
+    - Install Docker Compose if it’s not installed:
       ```bash
       docker-compose -v
       ```
 
 2. **Clone the Repository**:
-    - Copy the repository URL and execute the following command in the terminal:
+    - Copy the repository URL and run the following command in your terminal:
       ```bash
       git clone <REPOSITORY_URL>
       cd projectname
       ```
 
-3. **Set up environment variables**:
-    - Create a `.env` file in the root of the project and define necessary environment variables like `DATABASE_URL`, `JWT_SECRET`, etc.
+3. **Configure environment variables**:
+    - Create a `.env` file at the root of the project and define necessary environment variables, such as `DATABASE_URL`, `JWT_SECRET`, etc.
 
 4. **Start the project using Docker Compose**:
-    - Run the following command to start Docker containers:
+    - Run the following command to start the Docker containers:
       ```bash
       docker-compose up
       ```
@@ -87,7 +87,7 @@ To start the project locally, follow one of the options below:
     - If not installed, download and install from the [official Maven website](https://maven.apache.org/download.cgi).
 
 2. **Clone the Repository**:
-    - Copy the repository URL and execute the following command in the terminal:
+    - Copy the repository URL and run the following command in your terminal:
       ```bash
       git clone <REPOSITORY_URL>
       cd projectname
@@ -99,11 +99,11 @@ To start the project locally, follow one of the options below:
       mvn spring-boot:run
       ```
 
-Choose one of the options above based on your preference to start the project locally.
+Choose one of the above options based on your preference to start the project locally.
 
 ## 🌐 Deployment
 
-For deploying the application, consider using application hosting platforms like Heroku, AWS, or Azure, following best practices for security and scalability.
+For deploying the application, consider using hosting platforms like Heroku, AWS, or Azure, following best practices for security and scalability.
 
 ## ℹ️ Java Course Documentation
 
