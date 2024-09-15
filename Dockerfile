@@ -1,5 +1,5 @@
 # Use a Maven image with JDK 17 for building
-FROM maven:3.8.6-openjdk-17 AS builder
+FROM maven:3.8.6-jdk-17 AS builder
 
 WORKDIR /app
 
