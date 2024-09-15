@@ -1,5 +1,9 @@
 # Stage 1: Build the application
-FROM maven:3.8.6-openjdk-17 AS build
+FROM ubuntu:latest AS build
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk maven
 
 # Set the working directory
 WORKDIR /app
@@ -12,20 +16,20 @@ COPY pom.xml .
 # Copy the source code
 COPY src ./src
 
-# Install dependencies and build the project
-RUN mvn clean package -DskipTests
+# Build the application
+RUN mvn clean install -DskipTests
 
 # Stage 2: Create the final image
-FROM openjdk:17-jdk-slim AS runtime
+FROM openjdk:17-jdk-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the JAR file from the build stage
-COPY --from=build /app/target/todolist-0.0.1-SNAPSHOT.jar app.jar
-
 # Expose the port the app runs on
 EXPOSE 8080
 
+# Copy the JAR file from the build stage
+COPY --from=build /app/target/todolist-0.0.1-SNAPSHOT.jar app.jar
+
 # Run the JAR file
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
