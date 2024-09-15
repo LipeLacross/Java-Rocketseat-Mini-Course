@@ -1,4 +1,4 @@
-# Use a Maven image with JDK 17 from Render's Docker Hub
+# Use a Maven image with JDK 17 for building
 FROM render/worker:java-17-maven AS builder
 
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY src /app/src
 RUN mvn clean install -DskipTests
 
 # Use a smaller JDK image for the final stage
-FROM render/worker:java-17
+FROM adoptopenjdk/openjdk17:alpine-slim
 
 WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/app.jar
