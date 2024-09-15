@@ -14,7 +14,9 @@ Este projeto é uma aplicação de lista de tarefas (To-Do List) que permite aos
 
 ### Exemplo Visual do Projeto
 
-(Screenshot ou descrição visual do projeto, se aplicável)
+![Screenshot 2024-09-15 162402](https://github.com/user-attachments/assets/b746bd54-8e20-457d-866e-a198e587a274)
+![Screenshot 2024-09-15 163035](https://github.com/user-attachments/assets/7d6f1185-4bff-49ae-9554-f6b89bb58074)
+![Screenshot 2024-09-15 163048](https://github.com/user-attachments/assets/914829eb-a4b7-40b9-81a9-8e0ed9c5b99d)
 
 ## ✔️ Técnicas e Tecnologias Utilizadas
 
@@ -35,6 +37,8 @@ Este projeto é uma aplicação de lista de tarefas (To-Do List) que permite aos
     - **models/**: Entidades da aplicação.
     - **repositories/**: Repositórios JPA.
     - **services/**: Camada de serviço da aplicação.
+    - **config/**: Configurações de segurança e outras configurações.
+        - **WebSecurityConfig.java**: Configuração de segurança para proteger endpoints e gerenciar autenticação.
     - **TodolistApplication.java**: Ponto de entrada da aplicação Spring Boot.
 - **src/test/**: Testes unitários da aplicação.
 - **resources/**: Arquivos de configuração e propriedades.
@@ -101,10 +105,19 @@ Para iniciar o projeto localmente, siga uma das opções abaixo:
 
 Escolha uma das opções acima conforme a sua preferência para iniciar o projeto localmente.
 
+## 🔐 Configuração de Segurança
+
+O projeto inclui uma configuração de segurança personalizada para proteger os endpoints e gerenciar a autenticação dos usuários.
+
+### **Configuração de Segurança: `WebSecurityConfig.java`**
+
+- **Localização**: `src/main/java/br/com/lipelacross/todolist/config/WebSecurityConfig.java`
+- **Descrição**: Esta classe configura as regras de segurança da aplicação, incluindo a proteção dos endpoints REST e a autenticação baseada em JWT. A configuração define as permissões de acesso, autenticação e possíveis exceções.
+
 ## 🌐 Deploy
 
 Para o deploy da aplicação, considere utilizar plataformas de hospedagem de aplicativos como Heroku, AWS, ou Azure, seguindo as melhores práticas de segurança e escalabilidade.
 
-## ℹ️ Documentação do Curso de Java
+## 📚 Material Complementar
 
 Para mais detalhes sobre Java, consulte o [Curso de Java](https://efficient-sloth-d85.notion.site/Curso-de-Java-2408d11bfc3447e980fe9460b6293976) utilizado como referência para este projeto.
