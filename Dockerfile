@@ -1,30 +1,31 @@
-# Fase de construção
-FROM ubuntu:latest as build
+# Stage 1: Build the application
+FROM maven:3.9.4-openjdk-17 AS build
 
-# Instalação do OpenJDK 17 e Maven
-RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk maven
-
-# Define o diretório de trabalho
+# Set the working directory
 WORKDIR /app
 
-# Copia todos os arquivos para o contêiner
-COPY . .
+# Copy Maven wrapper and pom.xml
+COPY mvnw .
+COPY mvnw.cmd .
+COPY pom.xml .
 
-# Compila o código Java com Maven
-RUN mvn clean install
+# Copy the source code
+COPY src ./src
 
-# Fase final (runtime)
-FROM openjdk:17-jdk-slim
+# Install dependencies and build the project
+RUN mvn clean package -DskipTests
 
-# Expor a porta 8080
+# Stage 2: Create the final image
+FROM openjdk:17-jdk-slim AS runtime
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the JAR file from the build stage
+COPY --from=build /app/target/todolist-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Define o diretório de trabalho
-WORKDIR /app
-
-# Copia o JAR compilado da fase de construção para a fase final
-COPY --from=build /app/target/todolist-1.0.0.jar app.jar
-
-# Comando de inicialização da aplicação
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
