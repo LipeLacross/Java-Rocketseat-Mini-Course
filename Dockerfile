@@ -1,17 +1,27 @@
-FROM ubuntu:latest AS build
+# Usa uma imagem do Maven com OpenJDK 17
+FROM maven:3.8.4-openjdk-17 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
 
-COPY . .
+# Copia o arquivo pom.xml e as dependências
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
 
-RUN apt-get install maven -y
-RUN mvn clean install
+# Copia o código-fonte do projeto para o container
+COPY src ./src
 
+# Compila o projeto e executa os testes
+RUN mvn clean install -DskipTests
+
+# Segunda etapa - Usa uma imagem mais enxuta do OpenJDK 17
 FROM openjdk:17-jdk-slim
 
-EXPOSE 8080
+# Define o diretório de trabalho no container
+WORKDIR /app
 
-COPY --from=build /target/todolist-0.0.1-SNAPSHOT.jar app.jar
+# Copia o artefato gerado na etapa de build
+COPY --from=build /app/target/*.jar /app/app.jar
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+# Comando para rodar a aplicação
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
